@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Fonts */
+@font-face {
+  font-family: 'Marble';
+  src: url('./assets/fonts/Marble ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marble';
+  src: url('./assets/fonts/Marble Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base styles */
+body {
+  font-family: 'Marble', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
