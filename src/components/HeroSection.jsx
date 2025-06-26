@@ -3,7 +3,7 @@ const HeroSection = () => {
         <section className="bg-black px-4 text-center">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
-                    We Build. We Fix. We Maintain.
+                    We Build<span className="text-imperial-red">.</span> We Fix<span className="text-imperial-red">.</span> We Maintain<span className="text-imperial-red">.</span>
                 </h1>
 
                 {/* Video Background Placeholder */}
@@ -17,7 +17,7 @@ const HeroSection = () => {
                     </div>
                 </div>
 
-                <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all duration-300 hover:scale-105 transform shadow-lg">
+                <button className="bg-imperial-red-500 hover:bg-imperial-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all duration-300 hover:scale-105 transform shadow-lg">
                     Arrange a Call
                 </button>
 
