@@ -3,6 +3,7 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import './App.css'
 import ScrollAnimationSection from './components/ScrollAnimationSection';
+import CustomerReviewsSection from './components/CustomerReviewsSection';
 
 
 
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <HeroSection />
       <ScrollAnimationSection />
+      <CustomerReviewsSection />
   
     </div>
   );
