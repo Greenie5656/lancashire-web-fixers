@@ -235,7 +235,7 @@ const EnquiryFormSection = () => {
     }
 
     return (
-        <section ref={sectionRef} className="bg-black py-16 px-4">
+        <section ref={sectionRef} id="enquiry-form" className="bg-black py-16 px-4">
             <div className="max-w-2xl mx-auto">
                 {/* Section Header */}
                 <div className={`text-center mb-12 transition-all duration-1000 ${

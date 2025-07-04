@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight, User, MapPin, Calendar } from "lucide-react";
 import { SymbolLogo } from "./Logo";
+import { scrollToForm } from '../utils/scrollToForm';
 
 const CustomerReviewsSection = () => {
     const [activeReview, setActiveReview] = useState(0);
@@ -9,62 +10,40 @@ const CustomerReviewsSection = () => {
     const sectionRef = useRef(null);
 
     const reviews = [
-        {
-            id: 1,
-            name: "Sarah Mitchell",
-            location: "Preston, Lancashire",
-            rating: 5,
-            date: "March 2025",
-            review: "Absolutely brilliant! They completely transformed our outdated website into something modern and professional. The team understood our vision perfectly and delivered beyond expectations.",
-            service: "Full Website Redesign",
-            avatar: "SM",
-            color: "bg-blue-500"
-        },
-        {
-            id: 2,
-            name: "James Thompson",
-            location: "Blackpool, Lancashire",
-            rating: 5,
-            date: "February 2025",
-            review: "Lost our previous web developer and Lancashire Web Fixers saved the day! Quick response, fair pricing, and they fixed everything that was broken. Highly recommended!",
-            service: "Website Maintenance",
-            avatar: "JT",
-            color: "bg-green-500"
-        },
-        {
-            id: 3,
-            name: "Emma Richardson",
-            location: "Lancaster, Lancashire",
-            rating: 5,
-            date: "January 2025",
-            review: "From concept to launch, they handled everything professionally. The Shopify integration works perfectly and our online sales have increased by 40% since the redesign.",
-            service: "E-commerce Development",
-            avatar: "ER",
-            color: "bg-purple-500"
-        },
-        {
-            id: 4,
-            name: "Michael Davies",
-            location: "Burnley, Lancashire",
-            rating: 5,
-            date: "December 2024",
-            review: "30 years of experience really shows! They understood our industry-specific needs and created a website that perfectly represents our brand. Great communication throughout.",
-            service: "Custom Web Development",
-            avatar: "MD",
-            color: "bg-orange-500"
-        },
-        {
-            id: 5,
-            name: "Lisa Parker",
-            location: "Chorley, Lancashire",
-            rating: 5,
-            date: "November 2024",
-            review: "The team's expertise in both frontend and backend development is impressive. They solved complex technical issues that our previous developer couldn't handle.",
-            service: "Full-Stack Development",
-            avatar: "LP",
-            color: "bg-pink-500"
-        }
-    ];
+    {
+        id: 1,
+        name: "Michael Davies",
+        location: "BNCY Music, Lancashire",
+        rating: 5,
+        date: "March 2025",
+        review: "Needed custom Spotify chart integration on our Wix site to show real-time sales and popularity data. The team built a brilliant React solution using Spotify and Wix APIs - exactly what we needed for our record label. Professional hosting and seamless integration!",
+        service: "Custom API Integration & Hosting",
+        avatar: "MD",
+        color: "bg-purple-500"
+    },
+    {
+        id: 2,
+        name: "Chris Poole",
+        location: "The Alchemy Gym, Darwen",
+        rating: 5,
+        date: "February 2025",
+        review: "Built our WordPress site from scratch and provides ongoing maintenance - blogs, news updates, class schedules, everything. As a Hyrox competitor, I need my gym's online presence to be as strong as my training. They deliver every time!",
+        service: "WordPress Development & Maintenance",
+        avatar: "CP",
+        color: "bg-orange-500"
+    },
+    {
+        id: 3,
+        name: "Ben Lee",
+        location: "Bad Behaviour, Lancashire",
+        rating: 5,
+        date: "January 2025",
+        review: "Perfect website showcasing our latest music and events. Built from the ground up with ongoing updates for new releases and gigs. The team understands the music industry and delivered exactly what we needed for our dance music act.",
+        service: "Music Industry Website & Updates",
+        avatar: "BL",
+        color: "bg-blue-500"
+    }
+];
 
     // Intersection observer for scroll animations
     useEffect(() => {
@@ -290,8 +269,10 @@ const CustomerReviewsSection = () => {
                     <p className="text-xl text-gray-700 mb-6">
                         Ready to join our happy clients?
                     </p>
-                    <button className="bg-imperial-red-500 hover:bg-imperial-red-600 text-white font-bold py-4 px-8 rounded-lg text-lg transform hover:scale-105 transition-all duration-300 shadow-lg">
-                        Get Your Free Quote
+                    <button 
+                        onClick={scrollToForm}
+                        className="bg-imperial-red-500 hover:bg-imperial-red-600 text-white font-bold py-4 px-8 rounded-lg text-lg transform hover:scale-105 transition-all duration-300 shadow-lg">
+                       Get Started Below ↓
                     </button>
                 </div>
             </div>
