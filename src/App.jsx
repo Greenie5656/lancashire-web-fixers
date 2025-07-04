@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import './App.css'
 import ScrollAnimationSection from './components/ScrollAnimationSection';
 import CustomerReviewsSection from './components/CustomerReviewsSection';
+import EnquiryFormSection from './components/EnquiryFormSection';
 
 
 
@@ -14,7 +15,7 @@ function App() {
       <HeroSection />
       <ScrollAnimationSection />
       <CustomerReviewsSection />
-  
+      <EnquiryFormSection />  
     </div>
   );
 }
