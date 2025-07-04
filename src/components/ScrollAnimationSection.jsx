@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HelpCircle, Wrench, Lightbulb, Zap } from "lucide-react";
+import { scrollToForm } from '../utils/scrollToForm';
 
 const ScrollAnimationSection = () => {
     const [currentMessageIndex, setCurrentMessageIndex] = useState(-1);
@@ -214,7 +215,9 @@ const USPShowcase = ({ usps }) => {
                         <p className="text-3xl md:text-4xl font-light text-white mb-6">
                             Ready to get started?
                         </p>
-                        <button className="bg-imperial-red-500 hover:bg-imperial-red-600 text-white font-bold py-4 px-8 rounded-lg text-xl transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        <button 
+                            onClick={scrollToForm}
+                            className="bg-imperial-red-500 hover:bg-imperial-red-600 text-white font-bold py-4 px-8 rounded-lg text-xl transform hover:scale-105 transition-all duration-300 shadow-lg">
                             Let's Fix Your Website
                         </button>
                     </div>

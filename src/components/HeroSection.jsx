@@ -1,5 +1,7 @@
 import { useRef, useEffect } from 'react';
 import videoBackground from '../assets/LWF_Background_Full_Loop.mp4';
+import { scrollToForm } from '../utils/scrollToForm';
+
 
 const HeroSection = () => {
     const videoRef = useRef(null);
@@ -76,7 +78,9 @@ const HeroSection = () => {
                     </div>
                 </div>
 
-                <button className="bg-imperial-red-500 hover:bg-imperial-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all duration-300 hover:scale-105 transform shadow-lg">
+                <button 
+                    onClick={scrollToForm}
+                    className="bg-imperial-red-500 hover:bg-imperial-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all duration-300 hover:scale-105 transform shadow-lg">
                     Arrange a Call
                 </button>
 
