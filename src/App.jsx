@@ -5,6 +5,7 @@ import './App.css'
 import ScrollAnimationSection from './components/ScrollAnimationSection';
 import CustomerReviewsSection from './components/CustomerReviewsSection';
 import EnquiryFormSection from './components/EnquiryFormSection';
+import Footer from './components/Footer';
 
 
 
@@ -16,6 +17,7 @@ function App() {
       <ScrollAnimationSection />
       <CustomerReviewsSection />
       <EnquiryFormSection />  
+      <Footer />
     </div>
   );
 }
