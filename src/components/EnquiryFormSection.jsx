@@ -205,34 +205,40 @@ const EnquiryFormSection = () => {
         }
     };
 
+
+
     const getProgressPercentage = () => {
         return ((currentQuestion + 1) / questions.length) * 100;
     };
 
-    if (isSubmitted) {
-        return (
-            <section className="bg-black py-16 px-4">
-                <div className="max-w-2xl mx-auto text-center">
-                    <div className="animate-bounce mb-8">
-                        <div className="text-6xl mb-4">🎉</div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                            Right then!
-                        </h2>
-                        <p className="text-xl text-gray-300 mb-6">
-                            We will get back to you via <span className="text-imperial-red font-bold">
-                                {answers.contactPreference.split(" ")[0].toLowerCase()}
-                            </span> about <span className="text-imperial-red font-bold">
-                                {answers.problem.toLowerCase()}
-                            </span>
-                        </p>
-                        <p className="text-lg text-gray-400">
-                            Sit tight - help is on the way! 🛠️
-                        </p>
+        if (isSubmitted) {
+            return (
+                <section className="bg-black py-16 px-4 min-h-[80vh] flex items-center justify-center">
+                    <div className="max-w-2xl mx-auto text-center">
+                        <div className="animate-bounce mb-8">
+                            <div className="text-6xl mb-4">🎉</div>
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                                Right then!
+                            </h2>
+                            <p className="text-xl text-gray-300 mb-6">
+                                We will get back to you via <span className="text-imperial-red font-bold">
+                                    {answers.contactPreference.includes('call') ? 'phone' : 
+                                        answers.contactPreference.includes('Email') ? 'email' : 
+                                        answers.contactPreference.includes('WhatsApp') ? 'WhatsApp' : 
+                                        answers.contactPreference.includes('meet') ? 'meeting' : 
+                                        'our preferred method'}
+                                </span> about <span className="text-imperial-red font-bold">
+                                    {answers.problem.toLowerCase()}
+                                </span>
+                            </p>
+                            <p className="text-lg text-gray-400">
+                                Sit tight - help is on the way! 🛠️
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </section>
-        );
-    }
+                </section>
+            );
+        }
 
     return (
         <section ref={sectionRef} id="enquiry-form" className="bg-black py-16 px-4">
@@ -409,7 +415,7 @@ const EnquiryFormSection = () => {
             </div>
 
             {/* Custom slider styles */}
-            <style jsx>{`
+            <style>{`
                 .slider::-webkit-slider-thumb {
                     appearance: none;
                     height: 24px;
