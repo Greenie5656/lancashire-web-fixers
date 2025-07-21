@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowRight, ArrowLeft, Send, Coffee, Phone, Mail, MessageCircle, PoundSterling, Clock, Wrench } from "lucide-react";
+import { ArrowRight, ArrowLeft, Send, Coffee, Phone, Mail, MessageCircle, PoundSterling, Clock, Wrench, X, CheckCircle } from "lucide-react";
 
 const EnquiryFormSection = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -14,7 +14,7 @@ const EnquiryFormSection = () => {
         additionalDetails: ""
     });
     const [isVisible, setIsVisible] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const sectionRef = useRef(null);
 
@@ -131,6 +131,20 @@ const EnquiryFormSection = () => {
         };
     }, []);
 
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (showSuccessModal) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        // Cleanup function to reset overflow when component unmounts
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [showSuccessModal]);
+
     const handleAnswerChange = (value) => {
         setAnswers(prev => ({
             ...prev,
@@ -193,7 +207,7 @@ const EnquiryFormSection = () => {
             });
 
             if (response.ok) {
-                setIsSubmitted(true);
+                setShowSuccessModal(true);
             } else {
                 throw new Error("Form submission failed");
             }
@@ -205,214 +219,253 @@ const EnquiryFormSection = () => {
         }
     };
 
-
+    const closeModal = () => {
+        setShowSuccessModal(false);
+        // Optional: Reset form or redirect
+        // setCurrentQuestion(0);
+        // setAnswers({...initialAnswers});
+    };
 
     const getProgressPercentage = () => {
         return ((currentQuestion + 1) / questions.length) * 100;
     };
 
-        if (isSubmitted) {
-            return (
-                <section className="bg-black py-16 px-4 min-h-[80vh] flex items-center justify-center">
-                    <div className="max-w-2xl mx-auto text-center">
-                        <div className="animate-bounce mb-8">
-                            <div className="text-6xl mb-4">🎉</div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                                Right then!
-                            </h2>
-                            <p className="text-xl text-gray-300 mb-6">
-                                We will get back to you via <span className="text-imperial-red font-bold">
-                                    {answers.contactPreference.includes('call') ? 'phone' : 
-                                        answers.contactPreference.includes('Email') ? 'email' : 
-                                        answers.contactPreference.includes('WhatsApp') ? 'WhatsApp' : 
-                                        answers.contactPreference.includes('meet') ? 'meeting' : 
-                                        'our preferred method'}
-                                </span> about <span className="text-imperial-red font-bold">
-                                    {answers.problem.toLowerCase()}
-                                </span>
-                            </p>
-                            <p className="text-lg text-gray-400">
-                                Sit tight - help is on the way! 🛠️
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            );
-        }
+    const getContactMethodText = () => {
+        if (answers.contactPreference.includes('call')) return 'phone';
+        if (answers.contactPreference.includes('Email')) return 'email';
+        if (answers.contactPreference.includes('WhatsApp')) return 'WhatsApp';
+        if (answers.contactPreference.includes('meet')) return 'meeting';
+        return 'our preferred method';
+    };
 
     return (
-        <section ref={sectionRef} id="enquiry-form" className="bg-black py-16 px-4">
-            <div className="max-w-2xl mx-auto">
-                {/* Section Header */}
-                <div className={`text-center mb-12 transition-all duration-1000 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Let's Fix Your Website
-                        <span className="text-imperial-red ml-2">🔧</span>
-                    </h2>
-                    <p className="text-xl text-gray-300">
-                        Just a few quick questions to get started...
-                    </p>
-                </div>
-
-                {/* Progress Bar */}
-                <div className={`mb-8 transition-all duration-1000 delay-300 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}>
-                    <div className="flex justify-between text-sm text-gray-400 mb-2">
-                        <span>Question {currentQuestion + 1} of {questions.length}</span>
-                        <span>{Math.round(getProgressPercentage())}% complete</span>
+        <>
+            <section ref={sectionRef} id="enquiry-form" className="bg-black py-16 px-4">
+                <div className="max-w-2xl mx-auto">
+                    {/* Section Header */}
+                    <div className={`text-center mb-12 transition-all duration-1000 ${
+                        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                            Let's Fix Your Website
+                            <span className="text-red-500 ml-2">🔧</span>
+                        </h2>
+                        <p className="text-xl text-gray-300">
+                            Just a few quick questions to get started...
+                        </p>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-imperial-red h-2 rounded-full transition-all duration-500 ease-out"
-                            style={{ width: `${getProgressPercentage()}%` }}
-                        ></div>
-                    </div>
-                </div>
 
-                {/* Question Card */}
-                <div className={`bg-gray-900 rounded-xl p-8 border-2 border-gray-700 transition-all duration-1000 delay-500 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}>
-                    <div className="flex items-center mb-6">
-                        <div className="text-imperial-red mr-3">
-                            {questions[currentQuestion].icon}
+                    {/* Progress Bar */}
+                    <div className={`mb-8 transition-all duration-1000 delay-300 ${
+                        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}>
+                        <div className="flex justify-between text-sm text-gray-400 mb-2">
+                            <span>Question {currentQuestion + 1} of {questions.length}</span>
+                            <span>{Math.round(getProgressPercentage())}% complete</span>
                         </div>
-                        <h3 className="text-2xl font-bold text-white">
-                            {questions[currentQuestion].question}
-                        </h3>
+                        <div className="w-full bg-gray-700 rounded-full h-2">
+                            <div className="bg-red-500 h-2 rounded-full transition-all duration-500 ease-out"
+                                style={{ width: `${getProgressPercentage()}%` }}
+                            ></div>
+                        </div>
                     </div>
 
-                    {/* Answer Input */}
-                    <div className="mb-8">
-                        {questions[currentQuestion].type === "text" && (
-                            <input
-                                type="text"
-                                value={answers[questions[currentQuestion].id]}
-                                onChange={(e) => handleAnswerChange(e.target.value)}
-                                placeholder={questions[currentQuestion].placeholder}
-                                className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-imperial-red focus:outline-none transition-colors"
-                            />
-                        )}
-
-                        {questions[currentQuestion].type === "email" && (
-                            <input
-                                type="email"
-                                value={answers[questions[currentQuestion].id]}
-                                onChange={(e) => handleAnswerChange(e.target.value)}
-                                placeholder={questions[currentQuestion].placeholder}
-                                className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-imperial-red focus:outline-none transition-colors"
-                            />
-                        )}
-
-                        {questions[currentQuestion].type === "dropdown" && (
-                            <select
-                                value={answers[questions[currentQuestion].id]}
-                                onChange={(e) => handleAnswerChange(e.target.value)}
-                                className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white focus:border-imperial-red focus:outline-none transition-colors"
-                            >
-                                <option value="">Choose an option...</option>
-                                {questions[currentQuestion].options.map((option, index) => (
-                                    <option key={index} value={option}>{option}</option>
-                                ))}
-                            </select>
-                        )}
-
-                        {questions[currentQuestion].type === "slider" && (
-                            <div>
-                                <div className="flex justify-between items-center mb-4">
-                                    <span className="text-4xl">😬</span>
-                                    <span className="text-6xl">{getMoodEmoji(answers.websiteMood)}</span>
-                                    <span className="text-4xl">😍</span>
-                                </div>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    value={answers.websiteMood}
-                                    onChange={(e) => handleAnswerChange(parseInt(e.target.value))}
-                                    className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                                    style={{
-                                        background: `linear-gradient(to right, #ff0036 0%, #ff0036 ${answers.websiteMood}%, #374151 ${answers.websiteMood}%, #374151 100%)`
-                                    }}
-                                />
-                                <div className="text-center mt-2 text-gray-400">
-                                    Current Mood: {answers.websiteMood}% happy
-                                </div>
+                    {/* Question Card */}
+                    <div className={`bg-gray-900 rounded-xl p-8 border-2 border-gray-700 transition-all duration-1000 delay-500 ${
+                        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}>
+                        <div className="flex items-center mb-6">
+                            <div className="text-red-500 mr-3">
+                                {questions[currentQuestion].icon}
                             </div>
-                        )}
+                            <h3 className="text-2xl font-bold text-white">
+                                {questions[currentQuestion].question}
+                            </h3>
+                        </div>
 
-                        {questions[currentQuestion].type === "textarea" && (
-                            <textarea
-                                value={answers[questions[currentQuestion].id]}
-                                onChange={(e) => handleAnswerChange(e.target.value)}
-                                placeholder={questions[currentQuestion].placeholder}
-                                rows="4"
-                                className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-imperial-red focus:outline-none transition-colors"
-                            />
-                        )}
-                    </div>
+                        {/* Answer Input */}
+                        <div className="mb-8">
+                            {questions[currentQuestion].type === "text" && (
+                                <input
+                                    type="text"
+                                    value={answers[questions[currentQuestion].id]}
+                                    onChange={(e) => handleAnswerChange(e.target.value)}
+                                    placeholder={questions[currentQuestion].placeholder}
+                                    className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
+                                />
+                            )}
 
-                    {/* Navigation */}
-                    <div className="flex justify-between items-center">
-                        <button
-                            onClick={prevQuestion}
-                            disabled={currentQuestion === 0}
-                            className={`flex items-center px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
-                                currentQuestion === 0
-                                    ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-                                    : "bg-gray-700 text-white hover:bg-gray-600"
-                            }`}
-                        >
-                            <ArrowLeft className="w-5 h-5 mr-2" />
-                            Back
-                        </button>
+                            {questions[currentQuestion].type === "email" && (
+                                <input
+                                    type="email"
+                                    value={answers[questions[currentQuestion].id]}
+                                    onChange={(e) => handleAnswerChange(e.target.value)}
+                                    placeholder={questions[currentQuestion].placeholder}
+                                    className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
+                                />
+                            )}
 
-                        {currentQuestion === questions.length - 1 ? (
+                            {questions[currentQuestion].type === "dropdown" && (
+                                <select
+                                    value={answers[questions[currentQuestion].id]}
+                                    onChange={(e) => handleAnswerChange(e.target.value)}
+                                    className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white focus:border-red-500 focus:outline-none transition-colors"
+                                >
+                                    <option value="">Choose an option...</option>
+                                    {questions[currentQuestion].options.map((option, index) => (
+                                        <option key={index} value={option}>{option}</option>
+                                    ))}
+                                </select>
+                            )}
+
+                            {questions[currentQuestion].type === "slider" && (
+                                <div>
+                                    <div className="flex justify-between items-center mb-4">
+                                        <span className="text-4xl">😬</span>
+                                        <span className="text-6xl">{getMoodEmoji(answers.websiteMood)}</span>
+                                        <span className="text-4xl">😍</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="100"
+                                        value={answers.websiteMood}
+                                        onChange={(e) => handleAnswerChange(parseInt(e.target.value))}
+                                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                                        style={{
+                                            background: `linear-gradient(to right, #ff0036 0%, #ff0036 ${answers.websiteMood}%, #374151 ${answers.websiteMood}%, #374151 100%)`
+                                        }}
+                                    />
+                                    <div className="text-center mt-2 text-gray-400">
+                                        Current Mood: {answers.websiteMood}% happy
+                                    </div>
+                                </div>
+                            )}
+
+                            {questions[currentQuestion].type === "textarea" && (
+                                <textarea
+                                    value={answers[questions[currentQuestion].id]}
+                                    onChange={(e) => handleAnswerChange(e.target.value)}
+                                    placeholder={questions[currentQuestion].placeholder}
+                                    rows="4"
+                                    className="w-full p-4 bg-gray-800 border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
+                                />
+                            )}
+                        </div>
+
+                        {/* Navigation */}
+                        <div className="flex justify-between items-center">
                             <button
-                                onClick={handleSubmit}
-                                disabled={isSubmitting}
-                                className="flex items-center px-8 py-3 bg-imperial-red hover:bg-imperial-red-600 text-white font-bold rounded-lg transition-all duration-300 hover:scale-105 transform shadow-lg disabled:opacity-50"
-                            >
-                                {isSubmitting ? (
-                                    <>
-                                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                                        Sending...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Send className="w-5 h-5 mr-2" />
-                                        Send My Request
-                                    </>
-                                )}
-                            </button>
-                        ) : (
-                            <button
-                                onClick={nextQuestion}
-                                disabled={!canProceed()}
+                                onClick={prevQuestion}
+                                disabled={currentQuestion === 0}
                                 className={`flex items-center px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
-                                    canProceed()
-                                        ? 'bg-imperial-red hover:bg-imperial-red-600 text-white hover:scale-105 transform'
-                                        : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                                    currentQuestion === 0
+                                        ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+                                        : "bg-gray-700 text-white hover:bg-gray-600"
                                 }`}
                             >
-                                Next
-                                <ArrowRight className="w-5 h-5 ml-2" />
+                                <ArrowLeft className="w-5 h-5 mr-2" />
+                                Back
                             </button>
-                        )}
+
+                            {currentQuestion === questions.length - 1 ? (
+                                <button
+                                    onClick={handleSubmit}
+                                    disabled={isSubmitting}
+                                    className="flex items-center px-8 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-all duration-300 hover:scale-105 transform shadow-lg disabled:opacity-50"
+                                >
+                                    {isSubmitting ? (
+                                        <>
+                                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="w-5 h-5 mr-2" />
+                                            Send My Request
+                                        </>
+                                    )}
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={nextQuestion}
+                                    disabled={!canProceed()}
+                                    className={`flex items-center px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
+                                        canProceed()
+                                            ? 'bg-red-500 hover:bg-red-600 text-white hover:scale-105 transform'
+                                            : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                                    }`}
+                                >
+                                    Next
+                                    <ArrowRight className="w-5 h-5 ml-2" />
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Fun Footer Message */}
+                    <div className={`text-center mt-8 transition-all duration-1000 delay-700 ${
+                        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}>
+                        <p className="text-gray-400 text-sm">
+                            Don't worry - we're not robots. Real Lancashire humans will read this! 🤖❌ 👥✅
+                        </p>
                     </div>
                 </div>
+            </section>
 
-                {/* Fun Footer Message */}
-                <div className={`text-center mt-8 transition-all duration-1000 delay-700 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}>
-                    <p className="text-gray-400 text-sm">
-                        Don't worry - we're not robots. Real Lancashire humans will read this! 🤖❌ 👥✅
-                    </p>
+            {/* Success Modal */}
+            {showSuccessModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-2xl max-w-md w-full mx-auto transform transition-all duration-300 scale-100 animate-bounce">
+                        <div className="p-8 text-center relative">
+                            {/* Close Button */}
+                            <button
+                                onClick={closeModal}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+
+                            {/* Success Content */}
+                            <div className="mb-6">
+                                <div className="text-green-500 mb-4">
+                                    <CheckCircle className="w-16 h-16 mx-auto" />
+                                </div>
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                                    Right then!
+                                </h3>
+                                <p className="text-lg text-gray-600 mb-4">
+                                    We'll get back to you via <span className="text-red-500 font-bold">
+                                        {getContactMethodText()}
+                                    </span> about <span className="text-red-500 font-bold">
+                                        {answers.problem.toLowerCase()}
+                                    </span>
+                                </p>
+                                <p className="text-gray-500">
+                                    Sit tight - help is on the way! 🛠️
+                                </p>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="space-y-3">
+                                <button
+                                    onClick={closeModal}
+                                    className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                                >
+                                    Perfect! 👍
+                                </button>
+                                <button
+                                    onClick={() => window.open('https://wa.me/447464561135?text=Hi! Just sent through the form - excited to chat!', '_blank')}
+                                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                                >
+                                    WhatsApp us now 📱
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Custom slider styles */}
             <style>{`
@@ -437,7 +490,7 @@ const EnquiryFormSection = () => {
                     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
                 }
             `}</style>
-        </section>
+        </>
     );
 };
 
