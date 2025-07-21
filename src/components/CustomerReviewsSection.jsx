@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight, User, MapPin, Calendar } from "lucide-react";
-import { SymbolLogo } from "./Logo";
 import { scrollToForm } from '../utils/scrollToForm';
 
 const CustomerReviewsSection = () => {
@@ -117,7 +116,7 @@ const CustomerReviewsSection = () => {
                 <div className={`mb-16 transition-all duration-1000 delay-300 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}>
-                    <div className="relative bg-imperial-red-500 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+                    <div className="relative bg-imperial-red rounded-2xl p-8 md:p-12 text-white shadow-2xl">
                         {/* Quote Icon */}
                         <Quote className="absolute top-6 left-6 w-12 h-12 text-white/30" />
                         
@@ -194,9 +193,7 @@ const CustomerReviewsSection = () => {
                                 transitionDelay: `${index * 200}ms`
                             }}                            
                         >
-                            <div className="absolute top-1 right-1 z-10 w-20 h-20">
-                                <SymbolLogo className="w-full h-full object-contain opacity-40" />
-                            </div>
+                            
                             {/* Review Header */}
                             <div className="flex items-center mb-4">
                                 <div className={`w-12 h-12 ${review.color} rounded-full flex items-center justify-center text-white font-bold mr-3`}>
@@ -271,7 +268,7 @@ const CustomerReviewsSection = () => {
                     </p>
                     <button 
                         onClick={scrollToForm}
-                        className="bg-imperial-red-500 hover:bg-imperial-red-600 text-white font-bold py-4 px-8 rounded-lg text-lg transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        className="bg-imperial-red hover:bg-imperial-red-600 text-white font-bold py-4 px-8 rounded-lg text-lg transform hover:scale-105 transition-all duration-300 shadow-lg">
                        Get Started Below ↓
                     </button>
                 </div>
