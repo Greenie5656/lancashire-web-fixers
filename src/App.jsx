@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import './App.css'
@@ -18,6 +19,7 @@ function App() {
       <CustomerReviewsSection />
       <EnquiryFormSection />  
       <Footer />
+      <Analytics />
     </div>
   );
 }
