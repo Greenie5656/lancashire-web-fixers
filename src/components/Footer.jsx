@@ -26,13 +26,14 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     {/* Email Card */}
                     <a 
-                        href="mailto:lancashirewebfixers@gmail.com"
+                        href="mailto:hello@lancashirewebfixers.co.uk
+"
                         className="bg-gray-800 hover:bg-imperial-red-500 border-2 border-gray-600 hover:border-imperial-red-500 rounded-xl p-6 text-center transition-all duration-300 hover:scale-105 transform group"
                     >
                         <Mail className="w-12 h-12 text-imperial-red group-hover:text-white mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-white mb-2">Email</h3>
                         <p className="text-gray-300 group-hover:text-white text-xs break-words">
-                            lancashirewebfixers@gmail.com
+                            hello@lancashirewebfixers.co.uk
                         </p>
                     </a>
 
