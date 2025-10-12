@@ -22,6 +22,25 @@ const Footer = () => {
                     </p>
                 </div>
 
+                {/* Services Quick Links */}
+                <div className="mb-12 text-center">
+                <h3 className="text-2xl font-bold text-white mb-6">Our Services</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div className="text-gray-400 hover:text-imperial-red transition-colors">
+                    Web Design Lancashire
+                    </div>
+                    <div className="text-gray-400 hover:text-imperial-red transition-colors">
+                    Shopify Ecommerce
+                    </div>
+                    <div className="text-gray-400 hover:text-imperial-red transition-colors">
+                    Booking Systems
+                    </div>
+                    <div className="text-gray-400 hover:text-imperial-red transition-colors">
+                    Custom Business Apps
+                    </div>
+                </div>
+                </div>
+
                 {/* Contact Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     {/* Email Card */}
