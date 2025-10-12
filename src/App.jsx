@@ -7,6 +7,8 @@ import ScrollAnimationSection from './components/ScrollAnimationSection';
 import CustomerReviewsSection from './components/CustomerReviewsSection';
 import EnquiryFormSection from './components/EnquiryFormSection';
 import Footer from './components/Footer';
+import ServicesSection from './components/ServicesSection';
+import AreasServedSection from './components/AreasServedSection';
 
 
 
@@ -16,8 +18,10 @@ function App() {
       <Header />
       <HeroSection />
       <ScrollAnimationSection />
+      <ServicesSection />
       <CustomerReviewsSection />
-      <EnquiryFormSection />  
+      <EnquiryFormSection /> 
+      <AreasServedSection /> 
       <Footer />
       <Analytics />
     </div>

@@ -96,20 +96,30 @@ const FixedAnimatedMessage = ({ message, index, isQuestion, shouldStart, onCompl
         if (isVisible && shouldStart && !hasStarted) {
             setHasStarted(true);
             
-            let currentIndex = 0;
-            const intervalId = setInterval(() => {
-                if (currentIndex <= message.length) {
-                    const newText = message.slice(0, currentIndex);
-                    setDisplayText(newText);
-                    currentIndex++;
-                } else {
-                    clearInterval(intervalId);
+            // Middle lines (1 and 2) just fade in without typewriter effect
+            if (index === 1 || index === 2) {
+                setDisplayText(message);
+                setTimeout(() => {
                     setIsComplete(true);
                     onComplete();
-                }
-            }, 50);
+                }, 800); // Duration of fade-in animation
+            } else {
+                // Typewriter effect for first and last line
+                let currentIndex = 0;
+                const intervalId = setInterval(() => {
+                    if (currentIndex <= message.length) {
+                        const newText = message.slice(0, currentIndex);
+                        setDisplayText(newText);
+                        currentIndex++;
+                    } else {
+                        clearInterval(intervalId);
+                        setIsComplete(true);
+                        onComplete();
+                    }
+                }, 50);
+            }
         }
-    }, [isVisible, shouldStart, hasStarted, message, onComplete]);
+    }, [isVisible, shouldStart, hasStarted, message, onComplete, index]);
 
     return (
         <div
