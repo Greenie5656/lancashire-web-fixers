@@ -108,7 +108,7 @@ const AreasServedSection = () => {
                         Proudly Serving Lancashire
                     </h2>
                     <p className="text-xl text-gray-300 font-light max-w-2xl mx-auto">
-                        Professional web design and development across the North West
+                        Professional web design, development and website maintenance across the North West
                     </p>
                 </motion.div>
 
