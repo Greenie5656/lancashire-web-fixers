@@ -48,7 +48,7 @@ const HeroSection = () => {
         <section className="bg-black px-4 text-center">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
-                Professional Web Design Lancashire
+                Web Design & Website Maintenance Lancashire
                 <br />
                 <span className="text-xl md:text-2xl text-gray-300 font-light">
                     We Build<span className="text-imperial-red">.</span> We Fix<span className="text-imperial-red">.</span> We Maintain<span className="text-imperial-red">.</span>

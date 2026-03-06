@@ -129,7 +129,7 @@ const ServicesSection = () => {
                         Web Design Lancashire Services
                     </h2>
                     <p className="text-xl text-white font-light max-w-3xl mx-auto">
-                        From <span className="text-imperial-red font-bold">website design in Lancashire</span> to advanced booking systems - we've got your business covered across <span className="text-imperial-red font-bold">Preston, Blackpool, and beyond</span>
+                        From <span className="text-imperial-red font-bold">website design and maintenance in Lancashire</span> to advanced booking systems and custom web development - we've got your business covered across <span className="text-imperial-red font-bold">Preston, Blackpool, and beyond</span>
                     </p>
                 </motion.div>
 

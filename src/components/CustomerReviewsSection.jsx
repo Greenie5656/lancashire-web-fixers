@@ -21,50 +21,6 @@ const CustomerReviewsSection = () => {
     const reviews = [
         {
             id: 1,
-            name: "Ryan Hughes",
-            location: "Sweet Bros, Lancashire",
-            rating: 5,
-            date: "October 2025",
-            review: "Amazing service and guidance from start to finish. Nothing was ever to much trouble and I would highly recommend Lancashire Web Fixers. Since the website launch they have only ever been a message away for any queries. Thank you for creating the perfect website 🙌🏻",
-            service: "Custom Shopify FrontEnd & Hosting",
-            avatar: "RH",
-            color: "bg-green-500"
-        },
-        {
-            id: 2,
-            name: "Michael Davies",
-            location: "BNCY Music, Lancashire",
-            rating: 5,
-            date: "March 2025",
-            review: "Needed custom Spotify chart integration on our Wix site to show real-time sales and popularity data. The team built a brilliant React solution using Spotify and Wix APIs - exactly what we needed for our record label. Professional hosting and seamless integration!",
-            service: "Custom API Integration & Hosting",
-            avatar: "MD",
-            color: "bg-purple-500"
-        },
-        {
-            id: 3,
-            name: "Chris Poole",
-            location: "The Alchemy Gym, Darwen",
-            rating: 5,
-            date: "February 2025",
-            review: "Built our WordPress site from scratch and provides ongoing maintenance - blogs, news updates, class schedules, everything. As a Hyrox competitor, I need my gym's online presence to be as strong as my training. They deliver every time!",
-            service: "WordPress Development & Maintenance",
-            avatar: "CP",
-            color: "bg-orange-500"
-        },
-        {
-            id: 4,
-            name: "Ben Lee",
-            location: "Bad Behaviour, Lancashire",
-            rating: 5,
-            date: "January 2025",
-            review: "Perfect website showcasing our latest music and events. Built from the ground up with ongoing updates for new releases and gigs. The team understands the music industry and delivered exactly what we needed for our dance music act.",
-            service: "Music Industry Website & Updates",
-            avatar: "BL",
-            color: "bg-blue-500"
-        },
-        {
-            id: 5,
             name: "A2A Couriers",
             location: "A2A Couriers, Lancashire",
             rating: 5,
@@ -75,15 +31,59 @@ const CustomerReviewsSection = () => {
             color: "bg-red-500"
         },
         {
-            id: 6,
+            id: 2,
+            name: "Ryan Hughes",
+            location: "Sweet Bros, Lancashire",
+            rating: 5,
+            date: "October 2025",
+            review: "Amazing service and guidance from start to finish. Nothing was ever to much trouble and I would highly recommend Lancashire Web Fixers. Since the website launch they have only ever been a message away for any queries. Thank you for creating the perfect website 🙌🏻",
+            service: "Custom Shopify FrontEnd & Hosting",
+            avatar: "RH",
+            color: "bg-green-500"
+        },
+        {
+            id: 3,
             name: "Feal Electrical Automotive Ltd",
             location: "Feal Electrical Automotive Ltd, Lancashire",
             rating: 5,
-            date: "March 2026",
+            date: "October 2025",
             review: "Andrew at Lancashire Web Fixers helped create my company website and what a job he did. He took everything I asked for and delivered it exactly how I wanted. The website was up within a week, which is seriously impressive. I highly recommend him, great to talk to, easy to work with, and patient too. At one point I completely changed my mind about the design, and he didn't complain once, just got on with it and made every change I asked for.",
             service: "Website Design & Development",
             avatar: "FE",
             color: "bg-yellow-500"
+        },
+        {
+            id: 4,
+            name: "Michael Davies",
+            location: "BNCY Music, Lancashire",
+            rating: 5,
+            date: "March 2025",
+            review: "Needed custom Spotify chart integration on our Wix site to show real-time sales and popularity data. The team built a brilliant React solution using Spotify and Wix APIs - exactly what we needed for our record label. Professional hosting and seamless integration!",
+            service: "Custom API Integration & Hosting",
+            avatar: "MD",
+            color: "bg-purple-500"
+        },
+        {
+            id: 5,
+            name: "Chris Poole",
+            location: "The Alchemy Gym, Darwen",
+            rating: 5,
+            date: "February 2025",
+            review: "Built our WordPress site from scratch and provides ongoing maintenance - blogs, news updates, class schedules, everything. As a Hyrox competitor, I need my gym's online presence to be as strong as my training. They deliver every time!",
+            service: "WordPress Development & Maintenance",
+            avatar: "CP",
+            color: "bg-orange-500"
+        },
+        {
+            id: 6,
+            name: "Ben Lee",
+            location: "Bad Behaviour, Lancashire",
+            rating: 5,
+            date: "January 2025",
+            review: "Perfect website showcasing our latest music and events. Built from the ground up with ongoing updates for new releases and gigs. The team understands the music industry and delivered exactly what we needed for our dance music act.",
+            service: "Music Industry Website & Updates",
+            avatar: "BL",
+            color: "bg-blue-500"
         }
     ];
 
