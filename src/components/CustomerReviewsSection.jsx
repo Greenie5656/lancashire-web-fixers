@@ -62,6 +62,28 @@ const CustomerReviewsSection = () => {
             service: "Music Industry Website & Updates",
             avatar: "BL",
             color: "bg-blue-500"
+        },
+        {
+            id: 5,
+            name: "A2A Couriers",
+            location: "A2A Couriers, Lancashire",
+            rating: 5,
+            date: "March 2026",
+            review: "Andrew and the team at Lancashire Web Fixers are something else...they totally understand your needs, execute every detail with expert knowledge at a very competitive price. Andrew was always updating me and was on hand during the build, nothing is too much trouble...10/10 from start to finish!!",
+            service: "Website Design & Development",
+            avatar: "A2",
+            color: "bg-red-500"
+        },
+        {
+            id: 6,
+            name: "Feal Electrical Automotive Ltd",
+            location: "Feal Electrical Automotive Ltd, Lancashire",
+            rating: 5,
+            date: "March 2026",
+            review: "Andrew at Lancashire Web Fixers helped create my company website and what a job he did. He took everything I asked for and delivered it exactly how I wanted. The website was up within a week, which is seriously impressive. I highly recommend him, great to talk to, easy to work with, and patient too. At one point I completely changed my mind about the design, and he didn't complain once, just got on with it and made every change I asked for.",
+            service: "Website Design & Development",
+            avatar: "FE",
+            color: "bg-yellow-500"
         }
     ];
 
