@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ShoppingCart, Calendar, Database, Code, Wrench, Sparkles } from "lucide-react";
+import { ShoppingCart, Calendar, Database, Code, Wrench, Sparkles, Shield } from "lucide-react";
 
 const scrollToForm = () => {
   const formElement = document.getElementById('enquiry-form');
@@ -18,12 +18,22 @@ const ServicesSection = () => {
 
     const services = [
         {
+            icon: <Shield className="w-10 h-10" />,
+            title: "Website Maintenance Lancashire",
+            description: "Keep your website fast, secure and up to date with our professional website maintenance service in Lancashire. From content updates and security patches to performance monitoring — we'll keep your site running smoothly month after month. Lost your web guy? We step right in.",
+            keywords: "Website Maintenance Lancashire",
+            color: "from-imperial-red-500 to-red-700",
+            hoverColor: "group-hover:shadow-red-500/50",
+            featured: true
+        },
+        {
             icon: <ShoppingCart className="w-10 h-10" />,
             title: "Shopify Ecommerce Websites",
             description: "Launch your online store with our expert Shopify ecommerce website design in Lancashire. From product listings to payment integration, we build stores that sell.",
             keywords: "Shopify ecommerce website Lancashire",
             color: "from-green-500 to-emerald-600",
-            hoverColor: "group-hover:shadow-green-500/50"
+            hoverColor: "group-hover:shadow-green-500/50",
+            featured: false
         },
         {
             icon: <Calendar className="w-10 h-10" />,
@@ -31,7 +41,8 @@ const ServicesSection = () => {
             description: "Need an online booking system for your small business? Perfect for salons, gyms, and trades. Accept bookings 24/7 with our custom booking website design.",
             keywords: "Booking system for salons UK",
             color: "from-blue-500 to-cyan-600",
-            hoverColor: "group-hover:shadow-blue-500/50"
+            hoverColor: "group-hover:shadow-blue-500/50",
+            featured: false
         },
         {
             icon: <Database className="w-10 h-10" />,
@@ -39,7 +50,8 @@ const ServicesSection = () => {
             description: "Streamline your business with a custom CRM system for small businesses in the UK. Track customers, manage leads, and boost productivity.",
             keywords: "CRM system for small business UK",
             color: "from-purple-500 to-violet-600",
-            hoverColor: "group-hover:shadow-purple-500/50"
+            hoverColor: "group-hover:shadow-purple-500/50",
+            featured: false
         },
         {
             icon: <Code className="w-10 h-10" />,
@@ -47,7 +59,8 @@ const ServicesSection = () => {
             description: "As a custom business app developer in Lancashire, we build bespoke solutions that fit your exact needs - from inventory systems to client portals.",
             keywords: "Custom business app developer Lancashire",
             color: "from-orange-500 to-red-600",
-            hoverColor: "group-hover:shadow-orange-500/50"
+            hoverColor: "group-hover:shadow-orange-500/50",
+            featured: false
         }
     ];
 
@@ -126,7 +139,7 @@ const ServicesSection = () => {
                         <Wrench className="w-12 h-12 text-imperial-red mx-auto" />
                     </motion.div>
                     <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-                        Web Design Lancashire Services
+                        Website Maintenance & Web Design Lancashire
                     </h2>
                     <p className="text-xl text-white font-light max-w-3xl mx-auto">
                         From <span className="text-imperial-red font-bold">website design and maintenance in Lancashire</span> to advanced booking systems and custom web development - we've got your business covered across <span className="text-imperial-red font-bold">Preston, Blackpool, and beyond</span>
@@ -143,7 +156,7 @@ const ServicesSection = () => {
                             key={index}
                             variants={cardVariants}
                             whileHover={{ scale: 1.03, y: -5 }}
-                            className="group relative"
+                            className={`group relative${service.featured ? " md:col-span-2" : ""}`}
                         >
                             <div className={`relative bg-gray-900 rounded-2xl p-8 border-2 border-gray-700 hover:border-imperial-red-500 transition-all duration-300 shadow-2xl ${service.hoverColor}`}>
                                 {/* Gradient overlay on hover */}
@@ -194,7 +207,7 @@ const ServicesSection = () => {
                     transition={{ delay: 0.8 }}
                 >
                     <p className="text-xl text-white mb-6">
-                        Looking for expert <span className="text-imperial-red font-bold">web design in Preston</span> or <span className="text-imperial-red font-bold">Blackpool</span>?
+                        Need <span className="text-imperial-red font-bold">website maintenance</span> or expert <span className="text-imperial-red font-bold">web design in Lancashire</span>?
                     </p>
                     <motion.button 
                         onClick={scrollToForm}
